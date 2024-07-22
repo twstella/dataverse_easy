@@ -66,13 +66,13 @@ elif data_type == "Dataset":
 
     university = st.text_input("소속")
 
-    email_contacts = []
-    if "email_contacts" not in st.session_state:
+    if 'email_contacts' not in st.session_state:
         st.session_state.email_contacts = []
 
     st.subheader("연락처 이메일 추가")
     owner_name_input = st.text_input("소유자 이름", key='owner_name_input')
     email_input = st.text_input("이메일 입력", key='email_input_dataset')
+
     if st.button("추가", key='add_email_dataset'):
         if email_input and owner_name_input:
             st.session_state.email_contacts.append({"owner": owner_name_input, "email": email_input})
@@ -82,12 +82,12 @@ elif data_type == "Dataset":
 
     if st.session_state.email_contacts:
         st.subheader("추가된 이메일")
-        for contact in st.session_state.email_contacts:
+        for idx, contact in enumerate(st.session_state.email_contacts):
             col1, col2, col3 = st.columns([3, 3, 1])
             col1.write(contact["owner"])
             col2.write(contact["email"])
-            if col3.button("삭제", key=f'remove_{contact["email"]}'):
-                st.session_state.email_contacts.remove(contact)
+            if col3.button("삭제", key=f'remove_{idx}'):
+                st.session_state.email_contacts.pop(idx)
                 st.experimental_rerun()
 
     subject = st.selectbox("주제 선택", ["Agricultural Sciences", "Arts and Humanities", "Astronomy and Astrophysics", "Business and Management", "Chemistry","Computer and Information Science","Earth and Environmental Sciences","Engineering","Law","Mathematical Science","Medicine, Health and Life Sciences","Physics","Social Sciences","Other"])
