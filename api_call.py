@@ -146,7 +146,7 @@ def create_dataset(
 
 def delete_dataverse(alias):
     headers = {"X-Dataverse-key": API_TOKEN}
-    delete = url + "/dataverse/" + alias
+    delete = url + "/dataverses/" + alias
     print(delete)
     try:
         response = requests.delete(delete, headers=headers)

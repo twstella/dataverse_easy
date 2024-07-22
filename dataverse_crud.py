@@ -15,7 +15,7 @@ if data_type == "Dataverse":
     parent = st.text_input("상위 dataverse")
     name = st.text_input("이름")
 
-    alias = st.text_area("별명(유일해야 함)")
+    alias = st.text_input("별명(유일해야 함)")
 
     email_contacts = []
     if "email_contacts" not in st.session_state:
